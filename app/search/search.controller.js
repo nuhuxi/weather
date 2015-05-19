@@ -13,10 +13,10 @@
         weatherService.find(data.str)
           .then(
           function(response){
-            console.log(response);
+           console.log(response);
           },
           function(err) {
-            console.log("Error finding cities: ", err)
+           console.log("Error finding cities: ", err)
           }
         )
       }
