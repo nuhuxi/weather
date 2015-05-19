@@ -1,9 +1,3 @@
-/**
- * Created by mark07 on 5/19/15.
- */
-/**
- * Created by mark07 on 5/18/15.
- */
 (function(){
   angular.module("app.search")
     .controller("search", function($scope, weatherService){
