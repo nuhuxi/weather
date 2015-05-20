@@ -8,7 +8,9 @@
   angular.module("app.data")
     .factory("weatherService", function ($http, $q) {
       return {
-        find: findByLocation
+        find: findByLocation,
+        getCurrent: getCurrentWeather,
+        getForecast: getForecast
       }
 
       function findByLocation(location) {
@@ -25,6 +27,36 @@
           })
 
         return defer.promise;
+      };
+      function getCurrentWeather(id){
+        var defer = $q.defer();
+
+        var url = "http://api.openweathermap.org/data/2.5/weather/?id=" + id;
+
+        $http.get(url)
+          .success(function(response) {
+            defer.resolve(response);
+          })
+          .error(function(err){
+            defer.reject(err)
+          })
+        return defer.promise;
+
+      };
+      function getForecast(id){
+        var defer = $q.defer();
+
+        var url = "http://api.openweathermap.org/data/2.5/forecast/daily?id=" + id;
+
+        $http.get(url)
+          .success(function(response) {
+            defer.resolve(response);
+          })
+          .error(function(err){
+            defer.reject(err)
+          })
+        return defer.promise;
+
       }
     });
-}());
+})();
