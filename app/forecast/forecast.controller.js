@@ -23,7 +23,6 @@
             .then(
             function (response) {
               $scope.forecast = response;
-              console.log($scope.forecast);
             },
             function (err) {
               console.log("Error loading forecast data: ", err);

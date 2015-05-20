@@ -1,5 +1,5 @@
 <div class="row">
-  <h4>Weather Forecast for {{forecast.city.name}},  {{forecast.city.country}}</h4>
+  <h4 class="forecast-title">Weather Forecast for {{forecast.city.name}},  {{forecast.city.country}}</h4>
   <div class="col-md-4 forecast-list">
     <table class="table">
       <tbody>
@@ -18,4 +18,13 @@
       </tbody>
     </table>
   </div>
+  <div class="col-md-8">
+    <mgk-forecast dp="forecast">
+
+    </mgk-forecast>
+  </div>
+</div>
+<div class="row weather-controls">
+  <a href="#search" class="btn btn-info">Back to Search</a>
+  <a href="#/weather/{{forecast.city.id}}" class="btn btn-info">Back to Details</a>
 </div>
