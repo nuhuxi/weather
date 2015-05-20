@@ -4,10 +4,10 @@
     <table class="table">
       <tbody>
       <tr ng-repeat="weather in forecast.list">
-        <td>{{getTime(weather.dt) | date: "dd MMM"}} <img src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png"></td>
+        <td>{{getTime(weather.dt) | date: "dd MMM"}} <img src="{{getWeatherImageUrl(weather.weather[0].icon)}}"></td>
         <td>
-          <span class="label label-warning">{{weather.temp.max-273.15 | number}}°C</span>&nbsp;
-          <span class="label label-default">{{weather.temp.min-273.15 | number}}°C</span> &nbsp;&nbsp;
+          <span class="label label-warning">{{kelvinToDegree(weather.temp.max) | number}}°C</span>&nbsp;
+          <span class="label label-default">{{kelvinToDegree(weather.temp.min) | number}}°C</span> &nbsp;&nbsp;
           <i>{{weather.weather[0].description}}</i>
           <p>
             {{weather.speed}} m/s <br>

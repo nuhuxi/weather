@@ -5,7 +5,6 @@
   angular.module("app.weather")
     .controller("weather", function($scope, $routeParams, weatherService){
       $scope.current = null;
-      $scope.getTime = getTime;
 
       if($routeParams.id !== undefined){
         getCurrent($routeParams.id)
@@ -21,11 +20,6 @@
             }
         )
       }
-
-      function getTime(dt){
-        return new Date(dt * 1000);
-      }
-
 
     });
 })()

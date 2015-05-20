@@ -14,7 +14,6 @@
         link: linkFn
       }
       function linkFn(scope, element, attrs) {
-        console.log(element);
 
         var options = {
           title: {

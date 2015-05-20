@@ -6,15 +6,19 @@
  */
 (function () {
   angular.module("app.data")
-    .factory("weatherService", function ($http, $q) {
+    .factory("weatherService", function ($http, $q, weatherImageUrl, weatherSvcUrl, countryFlagImageUrl) {
       return {
         find: findByLocation,
         getCurrent: getCurrentWeather,
-        getForecast: getForecast
+        getForecast: getForecast,
+        getWeatherImageUrl: getWeatherImageUrl,
+        getCountryFlagImageUrl: getCountryFlagImageUrl,
+        kelvinToDegree: kelvinToDegree,
+        getTime: getTime
       }
 
       function findByLocation(location) {
-        var url = "http://api.openweathermap.org/data/2.5/find?q=" + location;
+        var url = weatherSvcUrl + "find?q=" + location;
 
         var defer = $q.defer();
 
@@ -31,7 +35,7 @@
       function getCurrentWeather(id){
         var defer = $q.defer();
 
-        var url = "http://api.openweathermap.org/data/2.5/weather/?id=" + id;
+        var url = weatherSvcUrl + "weather/?id=" + id;
 
         $http.get(url)
           .success(function(response) {
@@ -43,10 +47,11 @@
         return defer.promise;
 
       };
+
       function getForecast(id){
         var defer = $q.defer();
 
-        var url = "http://api.openweathermap.org/data/2.5/forecast/daily?id=" + id;
+        var url = weatherSvcUrl + "forecast/daily?id=" + id;
 
         $http.get(url)
           .success(function(response) {
@@ -57,6 +62,23 @@
           })
         return defer.promise;
 
+      };
+
+      function getWeatherImageUrl(imgStr) {
+       return weatherImageUrl + imgStr + ".png";
+      };
+
+      function getCountryFlagImageUrl(imgStr){
+        return countryFlagImageUrl + imgStr.toLowerCase() + ".png";
+      };
+
+      function kelvinToDegree(temp){
+        return temp - 273.15;
+      };
+
+      function getTime(dt){
+        return new Date(dt * 1000);
       }
+
     });
 })();

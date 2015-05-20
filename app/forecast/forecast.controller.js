@@ -10,7 +10,6 @@
   angular.module("app.forecast")
     .controller("forecast", function($scope, $routeParams, weatherService) {
       $scope.forecast = null;
-      $scope.getTime = getTime;
 
       if ($routeParams.id !== undefined) {
         getForecast($routeParams.id)
@@ -30,9 +29,7 @@
           )
         }
 
-        function getTime(dt){
-          return new Date(dt * 1000);
-        }
+
       }
     });
 
